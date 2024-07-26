@@ -19,7 +19,7 @@ async function run() {
             await exec.exec(command);
         } catch (err) {
             core.setFailed('ZAP exited with error: '  + err.toString());
-            let command = (`cp ~/.ZAP/zap.log /zap/wrk/zap.log`);
+            await exec.exec(`cp ~/.ZAP/zap.log /zap/wrk/zap.log`);
         }
     } catch (error) {
         core.setFailed(error.message);
