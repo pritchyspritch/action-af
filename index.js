@@ -12,21 +12,19 @@ async function run() {
 
         await exec.exec(`chmod a+w ${workspace}`);
 
-        await exec.exec(`mkdir ${workspace}/wrk`);
         await exec.exec(`mkdir ${workspace}/home`);
 
-        await exec.exec(`chmod a+w ${workspace}/wrk`);
         await exec.exec(`chmod a+w ${workspace}/home`);
 
         await exec.exec(`docker pull ${docker_name} -q`);
-        let command = (`docker run -v ${workspace}/wrk:/zap/wrk/:rw -v ${workspace}/home:/home/zap:rw --network="host" ${dockerEnvVars} -t ${docker_name} zap.sh -cmd -autorun /zap/wrk/${plan} ${cmdOptions}`);
+        let command = (`docker run -v ${workspace}:/zap/wrk/:rw -v ${workspace}/home:/home/zap:rw --network="host" ${dockerEnvVars} -t ${docker_name} zap.sh -cmd -autorun /zap/wrk/${plan} ${cmdOptions}`);
 
         try {
             await exec.exec(command);
         } catch (err) {
             core.setFailed('ZAP exited with error: '  + err.toString());
             await exec.exec(`ls -la ${workspace}/home`);
-            await exec.exec(`ls -la ${workspace}/wrk`);
+            await exec.exec(`ls -la ${workspace}`);
         }
     } catch (error) {
         core.setFailed(error.message);
