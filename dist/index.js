@@ -28070,6 +28070,9 @@ async function run() {
         await exec.exec(`mkdir ${workspace}/wrk`);
         await exec.exec(`mkdir ${workspace}/home`);
 
+        await exec.exec(`chmod a+w ${workspace}/wrk`);
+        await exec.exec(`chmod a+w ${workspace}/home`);
+
         await exec.exec(`docker pull ${docker_name} -q`);
         let command = (`docker run -v ${workspace}/wrk:/zap/wrk/:rw -v ${workspace}/home:/home/zap:rw --network="host" ${dockerEnvVars} -t ${docker_name} zap.sh -cmd -autorun /zap/wrk/${plan} ${cmdOptions}`);
 
