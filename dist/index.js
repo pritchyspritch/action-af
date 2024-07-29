@@ -28072,7 +28072,7 @@ async function run() {
         await exec.exec(`chmod a+w ${workspace}/home`);
 
         await exec.exec(`docker pull ${docker_name} -q`);
-        let command = (`docker run -v ${workspace}:/zap/wrk/:rw -v ${workspace}/home:/home/zap:rw --network="host" ${dockerEnvVars} -t ${docker_name} zap.sh -cmd -autorun /zap/wrk/${plan} ${cmdOptions}`);
+        let command = (`docker run -v ${workspace}:/zap/wrk/:rw -v ${workspace}/home:/home/zap:rw --network="host" ${dockerEnvVars} -t ${docker_name} zap.sh -cmd -autorun file:///zap/wrk/${plan} ${cmdOptions}`);
 
         try {
             await exec.exec(command);
