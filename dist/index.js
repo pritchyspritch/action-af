@@ -28081,6 +28081,7 @@ async function run() {
         } catch (err) {
             core.setFailed('ZAP exited with error: '  + err.toString());
             await exec.exec(`ls -la ${workspace}/home`);
+            await exec.exec(`ls -la ${workspace}/wrk`);
         }
     } catch (error) {
         core.setFailed(error.message);
