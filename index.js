@@ -12,6 +12,8 @@ async function run() {
 
         await exec.exec(`chmod a+w ${workspace}`);
 
+        await exec.exec(`chmod 777 ${workspace}/kotlin_external.kts`);
+
         await exec.exec(`mkdir ${workspace}/home`);
 
         await exec.exec(`chmod a+w ${workspace}/home`);
