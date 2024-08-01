@@ -28,7 +28,8 @@ async function run() {
             await exec.exec(`ls -la ${workspace}/home`);
             await exec.exec(`ls -la ${workspace}`);
             await exec.exec(`cat ${workspace}/testplan.yml`);
-            await exec.exec(`cat ${workspace}/stackhawk_kotlin.kts`);
+            await exec.exec(`python3 --version`);
+            await exec.exec(`pip3 help`);
         }
     } catch (error) {
         core.setFailed(error.message);
