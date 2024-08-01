@@ -28067,8 +28067,6 @@ async function run() {
 
         await exec.exec(`chmod a+w ${workspace}`);
 
-        await exec.exec(`chmod 777 ${workspace}/kotlin_external.kts`);
-
         await exec.exec(`mkdir ${workspace}/home`);
 
         await exec.exec(`chmod a+w ${workspace}/home`);
@@ -28082,9 +28080,7 @@ async function run() {
             core.setFailed('ZAP exited with error: '  + err.toString());
             await exec.exec(`ls -la ${workspace}/home`);
             await exec.exec(`ls -la ${workspace}`);
-            await exec.exec(`cat ${workspace}/testplan.yml`);
-            await exec.exec(`python3 --version`);
-            await exec.exec(`pip3 help`);
+            await exec.exec(`cat ${workspace}/plans/test-plan.yml`);
         }
     } catch (error) {
         core.setFailed(error.message);
